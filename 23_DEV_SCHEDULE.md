@@ -126,6 +126,17 @@ npm run lint && npm run build && npm run test && npm run smoke
 
 **검증 보고:** `VR-005` (P5) ✅ · **mock HTS 기능 동결 후보**
 
+### 지금 ~ 24 킥오프 전 (23 동결)
+
+| 순서 | 할 일 | 문서 |
+|------|--------|------|
+| 1 | Gate A 유지 (변경 시) | §0 |
+| 2 | 국내선물 수동 QA | `LAST_SESSION_REPORT.md` · `24_LADDER_STOP_UX.md` §4 |
+| 3 | 버그만 수정 (엔진·규칙 불변) | `TEDE_HTS1_PRODUCT_POLICY.md` |
+| 4 | 24 설계 메모 보강 | `docs/24_LADDER_STOP_UX.md` §5 §追加 |
+
+**24 킥오프:** `24_LADDER_STOP_UX.md` K0→K5 · DEC-001~003 확정 후 repo 분리
+
 ---
 
 ## 3. 중간 검증 보고 일정
