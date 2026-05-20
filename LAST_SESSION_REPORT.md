@@ -35,7 +35,11 @@
 
 ---
 
-## Backlog (post-freeze)
+## Post-freeze (§6b)
 
-- 호가 STOP 열 = 코인 UX 통일 (`23_ENGINE_RULES.md` §6b)
-- 신기능 → 24번 · 분양 = 스킨만
+- 호가 STOP 4상품 = 코인 동일 · test **204** · `bookMitUnifyPostFreeze.test.ts`
+- 수동: `23_MANUAL_QA_COIN.md` §G2
+
+## Backlog
+
+- 신기능 → 24번 · 분양 = 스킨만 · UI polish

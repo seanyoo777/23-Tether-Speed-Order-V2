@@ -27,7 +27,7 @@
 |--------|--------|------|------------|
 | AAPL | 190 | 0.01 | 1 |
 
-원웨이만 · 호가 STOP 열 MIT 비활성 (`mitEnabled: false`, P4 임시) · 패널 MIT 등록 가능
+원웨이만 · 호가 STOP 열 = 코인 동일 (`mitEnabled` + `stopEnabled`) · §6b 완료
 
 ### 국내주식 005930
 
@@ -35,7 +35,7 @@
 |--------|--------|------|------------|
 | 005930 | 58000 | 100 | 1 |
 
-원웨이만 · KRX 호가단위 100 · `shortEnabled` registry false (mock 체결은 one-way flip 규칙) · 호가 STOP 열 = P4 임시 비활성 (미국주식과 동일)
+원웨이만 · KRX 호가단위 100 · `shortEnabled` registry false (mock 체결은 one-way flip 규칙) · 호가 STOP 열 = 코인 동일 (§6b)
 
 ### 코인선물 심볼
 
@@ -111,13 +111,14 @@
 - 호가 클릭 가격 = trigger (임의 가격 금지)
 - 종목/전체 취소 API: `cancelAllStop`, `cancelAllOrders`
 
-### 6b. 상품 간 호가 MIT/STOP (백로그 · 사용자 확인 2026-05-20)
+### 6b. 상품 간 호가 MIT/STOP (완료 · 2026-05-20)
 
-| 시점 | 정책 |
+| 항목 | 정책 |
 |------|------|
-| **현재 (P4)** | 해외·미국·국내 — 호가 STOP 열 **등록만** 비활성 (`mitEnabled: false`). 엔진 체결·원웨이·`mitStopEngine` 규칙은 코인과 **동일**. |
-| **목표 (동결 후·Gate 통과 후)** | 4상품 호가창 STOP 열 = **코인선물 방식 통일**. MIT/STOP 규칙은 전 상품 **원웨이 동일** (헷지 없음). |
-| **금지** | P5 `STABLE_23_MOCK_V1` 동결 전 호가 UX 대규모 변경 |
+| **4상품** | COIN · ESZ6 · AAPL · 005930 — 호가 STOP 열 클릭 → MIT 등록 (코인과 동일) |
+| **엔진** | `mitStopEngine` · 원웨이 · `registerMit` / `processTick` 동일 |
+| **테스트** | `bookMitUnifyPostFreeze.test.ts` |
+| **헷지** | 해외·주식 — 헷지 토글 없음 (변경 없음) |
 
 ---
 

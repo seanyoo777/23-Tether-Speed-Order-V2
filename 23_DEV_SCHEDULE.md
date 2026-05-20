@@ -120,7 +120,7 @@ npm run lint && npm run build && npm run test && npm run smoke
 - [x] `23_QA_CHECKLIST.md` 최종판
 - [x] `STABLE_23_MOCK_V1` 태그 + `23_STABLE_MOCK_V1_LOCK.md`
 
-**동결 후 (안전 시 · P5 Gate 이후):** 4상품 호가 STOP 열 = 코인선물 UX 통일 · MIT/STOP 원웨이 규칙 동일 (`23_ENGINE_RULES.md` §6b)
+**동결 후 (완료):** §6b 호가 STOP 4상품 통일 — `bookMitUnifyPostFreeze.test.ts` · `23_ENGINE_RULES.md` §6b
 
 **검증 보고:** `VR-005` (P5) ✅ · **mock HTS 기능 동결 후보**
 

@@ -18,8 +18,9 @@ export function roundMitTriggerPrice(product: ProductType, symbol: string, raw: 
   return roundPrice(spec, raw)
 }
 
+/** Engine-ready symbols: book STOP column (same as coin — click locks trigger). */
 export function canRegisterBookMit(product: ProductType, symbol: string): boolean {
   if (!isProductBridgeReady(product, symbol)) return false
   const spec = requireSymbolSpec(symbol)
-  return spec.mitEnabled
+  return spec.stopEnabled && spec.mitEnabled
 }

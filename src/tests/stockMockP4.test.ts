@@ -67,8 +67,9 @@ describe('P4 / US stock AAPL', () => {
     expect(s.hedgeOpenLeg('LONG').ok).toBe(false)
   })
 
-  it('book MIT disabled (STOP panel path unchanged)', () => {
-    expect(canRegisterBookMit('US_STOCK', 'AAPL')).toBe(false)
+  it('book STOP column enabled (coin parity)', () => {
+    expect(canRegisterBookMit('US_STOCK', 'AAPL')).toBe(true)
+    expect(canRegisterBookMit('KOREA_STOCK', '005930')).toBe(true)
   })
 })
 

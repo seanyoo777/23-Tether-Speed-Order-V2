@@ -23,7 +23,7 @@
 - Doc: `23_PHASE_P5_INTEGRATION_FREEZE.md` · tests: `mockIntegrationP5.test.ts`
 - Stable tag: `STABLE_23_MOCK_V1` · lock: `23_STABLE_MOCK_V1_LOCK.md`
 - Gate: `lint` / `build` / `test` (197) / `smoke` (34) all PASS
-- **기능 동결 후보** — 신기능 → 24번 · 호가 STOP 통일은 §6b 백로그
+- **기능 동결 후보** — 신기능 → 24번 · §6b 호가 STOP 4상품 통일 완료
 
 ## QA Lock — `STABLE_23_MOCK_V1` (CURRENT)
 
@@ -33,7 +33,7 @@
 
 - **4상품 mock:** COIN · OVERSEAS (ESZ6) · US (AAPL) · KR (005930)
 - Multi-workspace: tabs, popup, detach, save/load (mock)
-- 호가 STOP 등록: 코인만 (해외·주식 §6b 백로그)
+- 호가 STOP 등록: 4상품 통일 (§6b 완료 · `bookMitUnifyPostFreeze.test.ts`)
 
 ## Commands
 
