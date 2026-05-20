@@ -6,12 +6,18 @@
 
 ## 1. 상품
 
-| ProductType | Phase |
-|-------------|--------|
-| COIN_FUTURES | 동작 (P2 lock) |
-| OVERSEAS_FUTURES | **ESZ6** mock (P3) |
-| US_STOCK / KOREA_STOCK | **AAPL** · **005930** mock (P4) |
-| **QA lock (P5)** | `STABLE_23_MOCK_V1` — 4상품 mock HTS 동결 후보 |
+**기본 상품 (확정):** 국내선물 · 해외선물 · 해외주식 · 국내주식 · 코인 · 옵션 — `docs/FIVE_PRODUCT_BASELINE.md`
+
+| # | 한글 | ProductType | mock |
+|---|------|-------------|------|
+| 1 | 국내선물 | `KOREA_FUTURES` | ✅ KOSPI200F (P6) |
+| 2 | 해외선물 | `OVERSEAS_FUTURES` | ✅ ESZ6 (P3) |
+| 3 | 해외주식 | `US_STOCK` | ✅ AAPL (P4) |
+| 4 | 국내주식 | `KOREA_STOCK` | ✅ 005930 (P4) |
+| 5 | 코인 | `COIN_FUTURES` | ✅ (P2) |
+| 6 | 옵션 | `COIN_OPTIONS` | ✅ BTC_97000_C (P6) |
+
+**동결:** `STABLE_23_MOCK_V1` · P6 기본 툴 완료 · **24번** = 실연동·대형 신기능
 
 ### 해외선물 ESZ6
 
@@ -21,7 +27,7 @@
 
 원웨이만 · 헷지 토글 없음 · 코인과 동일 주문창/호가 UX
 
-### 미국주식 AAPL
+### 해외주식 AAPL
 
 | Symbol | 기본가 | tick | multiplier |
 |--------|--------|------|------------|
@@ -36,6 +42,22 @@
 | 005930 | 58000 | 100 | 1 |
 
 원웨이만 · KRX 호가단위 100 · `shortEnabled` registry false (mock 체결은 one-way flip 규칙) · 호가 STOP 열 = 코인 동일 (§6b)
+
+### 국내선물 KOSPI200F
+
+| Symbol | 기본가 | tick | multiplier |
+|--------|--------|------|------------|
+| KOSPI200F | 385.5 | 0.05 | 250000 (adapter PnL) |
+
+원웨이만 · 호가 STOP = 코인 동일
+
+### 옵션 BTC_97000_C
+
+| Symbol | 기본가 | tick | multiplier |
+|--------|--------|------|------------|
+| BTC_97000_C | 850 | 0.5 | 1 |
+
+원웨이만 · 코인 옵션 mock · 호가 STOP = 코인 동일
 
 ### 코인선물 심볼
 

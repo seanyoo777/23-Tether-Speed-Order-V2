@@ -11,34 +11,52 @@ import {
 import { createTradingSession } from '../engine/tradingSession.ts'
 import {
   COIN_SYMBOL_CONFIG,
+  COIN_OPTIONS_SYMBOL_CONFIG,
+  KOREA_FUTURES_SYMBOL_CONFIG,
   KOREA_STOCK_SYMBOL_CONFIG,
   OVERSEAS_SYMBOL_CONFIG,
+  PRODUCT_TAB_ORDER,
   US_STOCK_SYMBOL_CONFIG,
   type ProductType,
 } from '../types/productTypes.ts'
 
-const FOUR: { product: ProductType; symbol: string; price: number }[] = [
-  { product: 'COIN_FUTURES', symbol: 'BTCUSDT', price: COIN_SYMBOL_CONFIG.BTCUSDT.basePrice },
-  {
-    product: 'OVERSEAS_FUTURES',
+const SEED_PRICE: Record<ProductType, { symbol: string; price: number }> = {
+  KOREA_FUTURES: {
+    symbol: 'KOSPI200F',
+    price: KOREA_FUTURES_SYMBOL_CONFIG.KOSPI200F.basePrice,
+  },
+  OVERSEAS_FUTURES: {
     symbol: 'ESZ6',
     price: OVERSEAS_SYMBOL_CONFIG.ESZ6.basePrice,
   },
-  { product: 'US_STOCK', symbol: 'AAPL', price: US_STOCK_SYMBOL_CONFIG.AAPL.basePrice },
-  {
-    product: 'KOREA_STOCK',
+  US_STOCK: { symbol: 'AAPL', price: US_STOCK_SYMBOL_CONFIG.AAPL.basePrice },
+  KOREA_STOCK: {
     symbol: '005930',
     price: KOREA_STOCK_SYMBOL_CONFIG['005930'].basePrice,
   },
-]
+  COIN_FUTURES: {
+    symbol: 'BTCUSDT',
+    price: COIN_SYMBOL_CONFIG.BTCUSDT.basePrice,
+  },
+  COIN_OPTIONS: {
+    symbol: 'BTC_97000_C',
+    price: COIN_OPTIONS_SYMBOL_CONFIG.BTC_97000_C.basePrice,
+  },
+}
+
+const ALL_PRODUCTS = PRODUCT_TAB_ORDER.map((product) => ({
+  product,
+  symbol: SEED_PRICE[product].symbol,
+  price: SEED_PRICE[product].price,
+}))
 
 describe('post-freeze / book STOP column unify (§6b)', () => {
   beforeEach(() => {
     clearCoinMitQueuesForTests()
   })
 
-  it('all four engine products allow book STOP registration', () => {
-    for (const { product, symbol } of FOUR) {
+  it('all six engine products allow book STOP registration', () => {
+    for (const { product, symbol } of ALL_PRODUCTS) {
       expect(canRegisterBookMit(product, symbol)).toBe(true)
     }
   })
@@ -47,7 +65,7 @@ describe('post-freeze / book STOP column unify (§6b)', () => {
     expect(roundMitTriggerPrice('KOREA_STOCK', '005930', 58_123)).toBe(58_100)
   })
 
-  it.each(FOUR)('$product $symbol — registerMit + manualTick triggers one-way', ({
+  it.each(ALL_PRODUCTS)('$product $symbol — registerMit + manualTick triggers one-way', ({
     product,
     symbol,
     price,

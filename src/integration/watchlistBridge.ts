@@ -12,10 +12,12 @@ export type WatchlistRow = {
 }
 
 const PRODUCT_MARKET: Partial<Record<ProductType, CoreMarketType>> = {
-  COIN_FUTURES: 'coin',
+  KOREA_FUTURES: 'kr_future',
   OVERSEAS_FUTURES: 'overseas_future',
   US_STOCK: 'us_stock',
   KOREA_STOCK: 'kr_stock',
+  COIN_FUTURES: 'coin',
+  COIN_OPTIONS: 'option',
 }
 
 const TAG_BY_MARKET: Record<CoreMarketType, string> = {
@@ -46,6 +48,8 @@ export function watchlistRowsForProduct(product: ProductType): WatchlistRow[] {
 /** Non-coin products: show labels only (not tradable in v1). */
 function previewRowsForComingSoon(product: ProductType): WatchlistRow[] {
   const previews: Record<ProductType, WatchlistRow[]> = {
+    KOREA_FUTURES: [],
+    COIN_OPTIONS: [],
     COIN_FUTURES: [],
     OVERSEAS_FUTURES: [
       stub('ESZ6', 'E-mini S&P', 'overseas_future', 'FUT'),

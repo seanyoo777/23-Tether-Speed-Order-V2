@@ -122,6 +122,8 @@ npm run lint && npm run build && npm run test && npm run smoke
 
 **동결 후 (완료):** §6b 호가 STOP 4상품 통일 — `bookMitUnifyPostFreeze.test.ts` · `23_ENGINE_RULES.md` §6b
 
+**P6 (완료):** `KOREA_FUTURES` · `COIN_OPTIONS` — `23_PHASE_P6_BASELINE_TOOLS.md` · test 212
+
 **검증 보고:** `VR-005` (P5) ✅ · **mock HTS 기능 동결 후보**
 
 ---

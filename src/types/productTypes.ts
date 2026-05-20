@@ -1,18 +1,35 @@
 import { resolveSymbolConfigForActive } from '../integration/symbolConfigBridge.ts'
 
-/** Multi-product discriminator — engine-ready set grows per phase. */
+/**
+ * Engine `ProductType` — baseline tools in 23 (24 = large features).
+ * Order: `docs/FIVE_PRODUCT_BASELINE.md` + 옵션
+ */
 export type ProductType =
-  | 'COIN_FUTURES'
+  | 'KOREA_FUTURES'
   | 'OVERSEAS_FUTURES'
   | 'US_STOCK'
   | 'KOREA_STOCK'
+  | 'COIN_FUTURES'
+  | 'COIN_OPTIONS'
 
 export const PRODUCT_LABELS: Record<ProductType, string> = {
-  COIN_FUTURES: '코인선물',
+  KOREA_FUTURES: '국내선물',
   OVERSEAS_FUTURES: '해외선물',
-  US_STOCK: '미국주식',
+  US_STOCK: '해외주식',
   KOREA_STOCK: '국내주식',
+  COIN_FUTURES: '코인',
+  COIN_OPTIONS: '옵션',
 }
+
+/** UI tab order (baseline + options). */
+export const PRODUCT_TAB_ORDER: readonly ProductType[] = [
+  'KOREA_FUTURES',
+  'OVERSEAS_FUTURES',
+  'US_STOCK',
+  'KOREA_STOCK',
+  'COIN_FUTURES',
+  'COIN_OPTIONS',
+]
 
 /** Coin default: one-way. With hedgeMode ON: dual legs. Other products: always one-way. */
 export type PositionMode = 'hedge' | 'one_way'
@@ -45,6 +62,10 @@ export type UsStockSymbol = 'AAPL'
 
 export type KoreaStockSymbol = '005930'
 
+export type KoreaFutureSymbol = 'KOSPI200F'
+
+export type CoinOptionSymbol = 'BTC_97000_C'
+
 export const COIN_SYMBOLS: readonly CoinSymbol[] = [
   'BTCUSDT',
   'ETHUSDT',
@@ -57,14 +78,20 @@ export const US_STOCK_SYMBOLS: readonly UsStockSymbol[] = ['AAPL']
 
 export const KOREA_STOCK_SYMBOLS: readonly KoreaStockSymbol[] = ['005930']
 
+export const KOREA_FUTURES_SYMBOLS: readonly KoreaFutureSymbol[] = ['KOSPI200F']
+
+export const COIN_OPTIONS_SYMBOLS: readonly CoinOptionSymbol[] = ['BTC_97000_C']
+
 export const ENGINE_SYMBOLS_BY_PRODUCT: Record<
   ProductType,
   readonly string[]
 > = {
-  COIN_FUTURES: COIN_SYMBOLS,
+  KOREA_FUTURES: KOREA_FUTURES_SYMBOLS,
   OVERSEAS_FUTURES: OVERSEAS_FUTURES_SYMBOLS,
   US_STOCK: US_STOCK_SYMBOLS,
   KOREA_STOCK: KOREA_STOCK_SYMBOLS,
+  COIN_FUTURES: COIN_SYMBOLS,
+  COIN_OPTIONS: COIN_OPTIONS_SYMBOLS,
 }
 
 export type SymbolConfig = {
@@ -94,6 +121,15 @@ export const KOREA_STOCK_SYMBOL_CONFIG: Record<KoreaStockSymbol, SymbolConfig> =
   '005930': { symbol: '005930', basePrice: 58_000, tick: 100 },
 }
 
+export const KOREA_FUTURES_SYMBOL_CONFIG: Record<KoreaFutureSymbol, SymbolConfig> =
+  {
+    KOSPI200F: { symbol: 'KOSPI200F', basePrice: 385.5, tick: 0.05 },
+  }
+
+export const COIN_OPTIONS_SYMBOL_CONFIG: Record<CoinOptionSymbol, SymbolConfig> = {
+  BTC_97000_C: { symbol: 'BTC_97000_C', basePrice: 850, tick: 0.5 },
+}
+
 export const DEFAULT_SHARED_ORDER_QTY = 0.05
 
 export function symbolsForProduct(product: ProductType): readonly string[] {
@@ -119,11 +155,9 @@ export function getSymbolConfig(
   if (product) {
     return resolveSymbolConfigForActive(product, symbol)
   }
-  const coin = resolveSymbolConfigForActive('COIN_FUTURES', symbol)
-  if (coin) return coin
-  const overseas = resolveSymbolConfigForActive('OVERSEAS_FUTURES', symbol)
-  if (overseas) return overseas
-  const us = resolveSymbolConfigForActive('US_STOCK', symbol)
-  if (us) return us
-  return resolveSymbolConfigForActive('KOREA_STOCK', symbol)
+  for (const p of PRODUCT_TAB_ORDER) {
+    const cfg = resolveSymbolConfigForActive(p, symbol)
+    if (cfg) return cfg
+  }
+  return undefined
 }

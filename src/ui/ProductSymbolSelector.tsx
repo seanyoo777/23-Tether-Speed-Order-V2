@@ -1,18 +1,12 @@
 import {
   PRODUCT_LABELS,
+  PRODUCT_TAB_ORDER,
   symbolsForProduct,
   type ProductType,
 } from '../types/productTypes.ts'
 import { isProductEngineReady } from '../types/productTypes.ts'
 import type { LadderDirection } from '../types/tradingTypes.ts'
 import { CoreSymbolMeta } from './CoreSymbolMeta.tsx'
-
-const PRODUCTS: ProductType[] = [
-  'COIN_FUTURES',
-  'OVERSEAS_FUTURES',
-  'US_STOCK',
-  'KOREA_STOCK',
-]
 
 type Props = {
   product: ProductType
@@ -36,7 +30,7 @@ export function ProductSymbolSelector({
   return (
     <div className="product-symbol-bar">
       <div className="product-tabs">
-        {PRODUCTS.map((p) => (
+        {PRODUCT_TAB_ORDER.map((p) => (
           <button
             key={p}
             type="button"

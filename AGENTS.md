@@ -31,7 +31,8 @@
 
 ## v1 scope
 
-- **4상품 mock:** COIN · OVERSEAS (ESZ6) · US (AAPL) · KR (005930)
+- **기본 6탭 mock:** 국내선물 KOSPI200F · 해외 ESZ6 · 해외주식 AAPL · 국내 005930 · 코인 · 옵션 BTC_97000_C
+- **24번:** 실 API · WebSocket · 대형 신기능 (`docs/TEDE_HTS1_PRODUCT_POLICY.md`)
 - Multi-workspace: tabs, popup, detach, save/load (mock)
 - 호가 STOP 등록: 4상품 통일 (§6b 완료 · `bookMitUnifyPostFreeze.test.ts`)
 

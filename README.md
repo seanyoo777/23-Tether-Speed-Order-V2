@@ -2,8 +2,9 @@
 
 한국 HTS식 **멀티상품 호가 주문창 V2** — 규칙 문서 우선, 엔진 검증 후 UI.
 
-**현재: P5 4상품 mock 동결** · stable `STABLE_23_MOCK_V1`  
-COIN · ESZ6 · AAPL · 005930 · 원웨이(코인 헷지 선택) · FLOW 기본 OFF
+**기본 6탭:** 국내선물 · 해외선물 · 해외주식 · 국내주식 · 코인 · 옵션 (`docs/FIVE_PRODUCT_BASELINE.md`)  
+**P6 완료** · stable `STABLE_23_MOCK_V1` · **24번** = 실연동·대형 신기능  
+KOSPI200F · ESZ6 · AAPL · 005930 · BTC/ETH/SOL · BTC_97000_C
 상단 **THEME1 · TGX** / **THEME2 · Next** 버튼으로 전환
 
 ## 실행

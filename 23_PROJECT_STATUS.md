@@ -6,9 +6,9 @@
 
 **Stable tag:** `STABLE_23_MOCK_V1`  
 
-**Version:** `1.0.0` · mock-only · **4상품 동결 후보**  
+**Version:** `1.0.0` · mock-only · **5대 기준 / 4상품 mock 동결**  
 
-**Gate:** lint / build / test **204** / smoke **34** PASS
+**Gate:** lint / build / test **212** / smoke **36** PASS
 
 
 
@@ -32,6 +32,8 @@
 
 | **Next work** | 동결 유지 (버그만) · 분양 스킨 · 신기능 → **24번** |
 | **Post-freeze** | §6b 호가 STOP 4상품 통일 ✅ · 사용자 QA 이슈 없음 |
+| **5대 기준** | 국내선물·해외선물·해외주식·국내주식·코인 — `docs/FIVE_PRODUCT_BASELINE.md` |
+| **미완** | **국내선물** (`KOREA_FUTURES` / KOSPI200F) — P6 또는 24번 |
 | **HQ 보고** | `docs/HQ_REPORTING.md` · `20-TetherTeam-HQ/MASTER_MANUAL.md` §23 |
 
 

@@ -13,15 +13,19 @@ import {
   OVERSEAS_SYMBOL_CONFIG,
   US_STOCK_SYMBOL_CONFIG,
   KOREA_STOCK_SYMBOL_CONFIG,
+  KOREA_FUTURES_SYMBOL_CONFIG,
+  COIN_OPTIONS_SYMBOL_CONFIG,
   symbolsForProduct,
 } from '../types/productTypes.ts'
 
 export function productTypeToCoreMarket(product: ProductType): CoreMarketType | null {
   const map: Partial<Record<ProductType, CoreMarketType>> = {
-    COIN_FUTURES: 'coin',
+    KOREA_FUTURES: 'kr_future',
     OVERSEAS_FUTURES: 'overseas_future',
     US_STOCK: 'us_stock',
     KOREA_STOCK: 'kr_stock',
+    COIN_FUTURES: 'coin',
+    COIN_OPTIONS: 'option',
   }
   return map[product] ?? null
 }
@@ -63,6 +67,16 @@ function seedConfig(product: ProductType, symbol: string): SymbolConfig | undefi
   }
   if (product === 'KOREA_STOCK' && symbol in KOREA_STOCK_SYMBOL_CONFIG) {
     return KOREA_STOCK_SYMBOL_CONFIG[symbol as keyof typeof KOREA_STOCK_SYMBOL_CONFIG]
+  }
+  if (product === 'KOREA_FUTURES' && symbol in KOREA_FUTURES_SYMBOL_CONFIG) {
+    return KOREA_FUTURES_SYMBOL_CONFIG[
+      symbol as keyof typeof KOREA_FUTURES_SYMBOL_CONFIG
+    ]
+  }
+  if (product === 'COIN_OPTIONS' && symbol in COIN_OPTIONS_SYMBOL_CONFIG) {
+    return COIN_OPTIONS_SYMBOL_CONFIG[
+      symbol as keyof typeof COIN_OPTIONS_SYMBOL_CONFIG
+    ]
   }
   return undefined
 }

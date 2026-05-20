@@ -16,20 +16,18 @@ import { clearThemeStorage, loadThemeId, saveThemeId } from '../theme/themeStora
 import { WORKSPACE_STORAGE_THEME1, WORKSPACE_STORAGE_THEME2 } from '../workspace/types.ts'
 import {
   COIN_SYMBOL_CONFIG,
+  COIN_OPTIONS_SYMBOL_CONFIG,
   defaultSymbolForProduct,
   isProductEngineReady,
+  KOREA_FUTURES_SYMBOL_CONFIG,
   KOREA_STOCK_SYMBOL_CONFIG,
   OVERSEAS_SYMBOL_CONFIG,
+  PRODUCT_TAB_ORDER,
   US_STOCK_SYMBOL_CONFIG,
   type ProductType,
 } from '../types/productTypes.ts'
 
-const PRODUCT_CYCLE: ProductType[] = [
-  'COIN_FUTURES',
-  'OVERSEAS_FUTURES',
-  'US_STOCK',
-  'KOREA_STOCK',
-]
+const PRODUCT_CYCLE: ProductType[] = [...PRODUCT_TAB_ORDER]
 
 const BTC = COIN_SYMBOL_CONFIG.BTCUSDT.basePrice
 
@@ -49,26 +47,26 @@ describe('P5 / four-product integration', () => {
     expect(symbols).toContain('ESZ6')
     expect(symbols).toContain('AAPL')
     expect(symbols).toContain('005930')
+    expect(symbols).toContain('KOSPI200F')
+    expect(symbols).toContain('BTC_97000_C')
   })
 
-  it('COIN → OVERSEAS → US → KR — panel buy + one-way + default symbol', () => {
+  it('six products — panel buy + one-way + default symbol', () => {
     const s = createTradingSession()
-    s.setProduct('COIN_FUTURES')
-    expect(s.getState().symbol).toBe('BTCUSDT')
-    expect(panelBuyOk(s)).toBe(true)
-
-    s.setProduct('OVERSEAS_FUTURES')
-    expect(s.getState().symbol).toBe('ESZ6')
-    expect(s.getState().hedgeMode).toBe(false)
-    expect(panelBuyOk(s)).toBe(true)
-
-    s.setProduct('US_STOCK')
-    expect(s.getState().symbol).toBe('AAPL')
-    expect(panelBuyOk(s)).toBe(true)
-
-    s.setProduct('KOREA_STOCK')
-    expect(s.getState().symbol).toBe('005930')
-    expect(panelBuyOk(s)).toBe(true)
+    const expects: [ProductType, string][] = [
+      ['KOREA_FUTURES', 'KOSPI200F'],
+      ['OVERSEAS_FUTURES', 'ESZ6'],
+      ['US_STOCK', 'AAPL'],
+      ['KOREA_STOCK', '005930'],
+      ['COIN_FUTURES', 'BTCUSDT'],
+      ['COIN_OPTIONS', 'BTC_97000_C'],
+    ]
+    for (const [product, sym] of expects) {
+      s.setProduct(product)
+      expect(s.getState().symbol).toBe(sym)
+      expect(s.getState().hedgeMode).toBe(false)
+      expect(panelBuyOk(s)).toBe(true)
+    }
   })
 
   it('reverse cycle KR → US → OVERSEAS → COIN restores coin hedge toggle', () => {
@@ -88,12 +86,14 @@ describe('P5 / four-product integration', () => {
 
   it('ladder order per product (one-way)', () => {
     const s = createTradingSession()
-    const prices = {
-      COIN_FUTURES: BTC,
+    const prices: Record<ProductType, number> = {
+      KOREA_FUTURES: KOREA_FUTURES_SYMBOL_CONFIG.KOSPI200F.basePrice,
       OVERSEAS_FUTURES: OVERSEAS_SYMBOL_CONFIG.ESZ6.basePrice,
       US_STOCK: US_STOCK_SYMBOL_CONFIG.AAPL.basePrice,
       KOREA_STOCK: KOREA_STOCK_SYMBOL_CONFIG['005930'].basePrice,
-    } as const
+      COIN_FUTURES: BTC,
+      COIN_OPTIONS: COIN_OPTIONS_SYMBOL_CONFIG.BTC_97000_C.basePrice,
+    }
 
     for (const p of PRODUCT_CYCLE) {
       s.setProduct(p)
