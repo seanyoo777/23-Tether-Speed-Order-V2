@@ -1,0 +1,129 @@
+import { resolveSymbolConfigForActive } from '../integration/symbolConfigBridge.ts'
+
+/** Multi-product discriminator — engine-ready set grows per phase. */
+export type ProductType =
+  | 'COIN_FUTURES'
+  | 'OVERSEAS_FUTURES'
+  | 'US_STOCK'
+  | 'KOREA_STOCK'
+
+export const PRODUCT_LABELS: Record<ProductType, string> = {
+  COIN_FUTURES: '코인선물',
+  OVERSEAS_FUTURES: '해외선물',
+  US_STOCK: '미국주식',
+  KOREA_STOCK: '국내주식',
+}
+
+/** Coin default: one-way. With hedgeMode ON: dual legs. Other products: always one-way. */
+export type PositionMode = 'hedge' | 'one_way'
+
+/** Coin futures can toggle hedge mode; other product groups cannot. */
+export function supportsHedgeMode(product: ProductType): boolean {
+  return product === 'COIN_FUTURES'
+}
+
+/** Active dual-leg trading (coin + hedge toggle ON). */
+export function useHedgeLegTrading(
+  product: ProductType,
+  hedgeMode: boolean,
+): boolean {
+  return supportsHedgeMode(product) && hedgeMode
+}
+
+export function positionModeForProduct(
+  product: ProductType,
+  hedgeMode: boolean,
+): PositionMode {
+  return useHedgeLegTrading(product, hedgeMode) ? 'hedge' : 'one_way'
+}
+
+export type CoinSymbol = 'BTCUSDT' | 'ETHUSDT' | 'SOLUSDT'
+
+export type OverseasFutureSymbol = 'ESZ6'
+
+export type UsStockSymbol = 'AAPL'
+
+export type KoreaStockSymbol = '005930'
+
+export const COIN_SYMBOLS: readonly CoinSymbol[] = [
+  'BTCUSDT',
+  'ETHUSDT',
+  'SOLUSDT',
+]
+
+export const OVERSEAS_FUTURES_SYMBOLS: readonly OverseasFutureSymbol[] = ['ESZ6']
+
+export const US_STOCK_SYMBOLS: readonly UsStockSymbol[] = ['AAPL']
+
+export const KOREA_STOCK_SYMBOLS: readonly KoreaStockSymbol[] = ['005930']
+
+export const ENGINE_SYMBOLS_BY_PRODUCT: Record<
+  ProductType,
+  readonly string[]
+> = {
+  COIN_FUTURES: COIN_SYMBOLS,
+  OVERSEAS_FUTURES: OVERSEAS_FUTURES_SYMBOLS,
+  US_STOCK: US_STOCK_SYMBOLS,
+  KOREA_STOCK: KOREA_STOCK_SYMBOLS,
+}
+
+export type SymbolConfig = {
+  symbol: string
+  basePrice: number
+  tick: number
+}
+
+export const COIN_SYMBOL_CONFIG: Record<CoinSymbol, SymbolConfig> = {
+  BTCUSDT: { symbol: 'BTCUSDT', basePrice: 97_420, tick: 0.5 },
+  ETHUSDT: { symbol: 'ETHUSDT', basePrice: 3_480, tick: 0.05 },
+  SOLUSDT: { symbol: 'SOLUSDT', basePrice: 172, tick: 0.01 },
+}
+
+export const OVERSEAS_SYMBOL_CONFIG: Record<
+  OverseasFutureSymbol,
+  SymbolConfig
+> = {
+  ESZ6: { symbol: 'ESZ6', basePrice: 5_800, tick: 0.25 },
+}
+
+export const US_STOCK_SYMBOL_CONFIG: Record<UsStockSymbol, SymbolConfig> = {
+  AAPL: { symbol: 'AAPL', basePrice: 190, tick: 0.01 },
+}
+
+export const KOREA_STOCK_SYMBOL_CONFIG: Record<KoreaStockSymbol, SymbolConfig> = {
+  '005930': { symbol: '005930', basePrice: 58_000, tick: 100 },
+}
+
+export const DEFAULT_SHARED_ORDER_QTY = 0.05
+
+export function symbolsForProduct(product: ProductType): readonly string[] {
+  return ENGINE_SYMBOLS_BY_PRODUCT[product] ?? []
+}
+
+export function isProductEngineReady(product: ProductType): boolean {
+  return symbolsForProduct(product).length > 0
+}
+
+export function defaultSymbolForProduct(product: ProductType): string {
+  return symbolsForProduct(product)[0] ?? 'BTCUSDT'
+}
+
+export function productComingSoonMessage(product: ProductType): string {
+  return `${PRODUCT_LABELS[product]} — 준비중`
+}
+
+export function getSymbolConfig(
+  symbol: string,
+  product?: ProductType,
+): SymbolConfig | undefined {
+  if (product) {
+    return resolveSymbolConfigForActive(product, symbol)
+  }
+  const coin = resolveSymbolConfigForActive('COIN_FUTURES', symbol)
+  if (coin) return coin
+  const overseas = resolveSymbolConfigForActive('OVERSEAS_FUTURES', symbol)
+  if (overseas) return overseas
+  const us = resolveSymbolConfigForActive('US_STOCK', symbol)
+  if (us) return us
+  return resolveSymbolConfigForActive('KOREA_STOCK', symbol)
+}
