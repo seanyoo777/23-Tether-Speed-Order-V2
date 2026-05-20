@@ -16,7 +16,6 @@ import { clearThemeStorage, loadThemeId, saveThemeId } from '../theme/themeStora
 import { WORKSPACE_STORAGE_THEME1, WORKSPACE_STORAGE_THEME2 } from '../workspace/types.ts'
 import {
   COIN_SYMBOL_CONFIG,
-  COIN_OPTIONS_SYMBOL_CONFIG,
   defaultSymbolForProduct,
   isProductEngineReady,
   KOREA_FUTURES_SYMBOL_CONFIG,
@@ -37,7 +36,7 @@ function panelBuyOk(s: ReturnType<typeof createTradingSession>): boolean {
 }
 
 describe('P5 / four-product integration', () => {
-  it('all four products engine-ready', () => {
+  it('all five products engine-ready', () => {
     for (const p of PRODUCT_CYCLE) {
       expect(isProductEngineReady(p)).toBe(true)
       expect(defaultSymbolForProduct(p)).toBeTruthy()
@@ -48,10 +47,11 @@ describe('P5 / four-product integration', () => {
     expect(symbols).toContain('AAPL')
     expect(symbols).toContain('005930')
     expect(symbols).toContain('KOSPI200F')
-    expect(symbols).toContain('BTC_97000_C')
+    expect(symbols).toContain('K200W')
+    expect(symbols).toContain('KOSPI200FM')
   })
 
-  it('six products — panel buy + one-way + default symbol', () => {
+  it('five products — panel buy + one-way + default symbol', () => {
     const s = createTradingSession()
     const expects: [ProductType, string][] = [
       ['KOREA_FUTURES', 'KOSPI200F'],
@@ -59,7 +59,6 @@ describe('P5 / four-product integration', () => {
       ['US_STOCK', 'AAPL'],
       ['KOREA_STOCK', '005930'],
       ['COIN_FUTURES', 'BTCUSDT'],
-      ['COIN_OPTIONS', 'BTC_97000_C'],
     ]
     for (const [product, sym] of expects) {
       s.setProduct(product)
@@ -92,7 +91,6 @@ describe('P5 / four-product integration', () => {
       US_STOCK: US_STOCK_SYMBOL_CONFIG.AAPL.basePrice,
       KOREA_STOCK: KOREA_STOCK_SYMBOL_CONFIG['005930'].basePrice,
       COIN_FUTURES: BTC,
-      COIN_OPTIONS: COIN_OPTIONS_SYMBOL_CONFIG.BTC_97000_C.basePrice,
     }
 
     for (const p of PRODUCT_CYCLE) {

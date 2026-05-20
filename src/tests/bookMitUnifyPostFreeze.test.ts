@@ -11,7 +11,6 @@ import {
 import { createTradingSession } from '../engine/tradingSession.ts'
 import {
   COIN_SYMBOL_CONFIG,
-  COIN_OPTIONS_SYMBOL_CONFIG,
   KOREA_FUTURES_SYMBOL_CONFIG,
   KOREA_STOCK_SYMBOL_CONFIG,
   OVERSEAS_SYMBOL_CONFIG,
@@ -38,10 +37,6 @@ const SEED_PRICE: Record<ProductType, { symbol: string; price: number }> = {
     symbol: 'BTCUSDT',
     price: COIN_SYMBOL_CONFIG.BTCUSDT.basePrice,
   },
-  COIN_OPTIONS: {
-    symbol: 'BTC_97000_C',
-    price: COIN_OPTIONS_SYMBOL_CONFIG.BTC_97000_C.basePrice,
-  },
 }
 
 const ALL_PRODUCTS = PRODUCT_TAB_ORDER.map((product) => ({
@@ -55,7 +50,7 @@ describe('post-freeze / book STOP column unify (§6b)', () => {
     clearCoinMitQueuesForTests()
   })
 
-  it('all six engine products allow book STOP registration', () => {
+  it('all five products allow book STOP registration', () => {
     for (const { product, symbol } of ALL_PRODUCTS) {
       expect(canRegisterBookMit(product, symbol)).toBe(true)
     }

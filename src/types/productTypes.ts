@@ -1,8 +1,8 @@
 import { resolveSymbolConfigForActive } from '../integration/symbolConfigBridge.ts'
 
 /**
- * Engine `ProductType` — baseline tools in 23 (24 = large features).
- * Order: `docs/FIVE_PRODUCT_BASELINE.md` + 옵션
+ * Engine `ProductType` — 5-product baseline (`docs/FIVE_PRODUCT_BASELINE.md`).
+ * 국내선물 = 선물 종목군 + 국내 옵션(위클리·위클리먼데이·월물) 한 탭.
  */
 export type ProductType =
   | 'KOREA_FUTURES'
@@ -10,7 +10,6 @@ export type ProductType =
   | 'US_STOCK'
   | 'KOREA_STOCK'
   | 'COIN_FUTURES'
-  | 'COIN_OPTIONS'
 
 export const PRODUCT_LABELS: Record<ProductType, string> = {
   KOREA_FUTURES: '국내선물',
@@ -18,20 +17,17 @@ export const PRODUCT_LABELS: Record<ProductType, string> = {
   US_STOCK: '해외주식',
   KOREA_STOCK: '국내주식',
   COIN_FUTURES: '코인',
-  COIN_OPTIONS: '옵션',
 }
 
-/** UI tab order (baseline + options). */
+/** UI tab order (5-product baseline). */
 export const PRODUCT_TAB_ORDER: readonly ProductType[] = [
   'KOREA_FUTURES',
   'OVERSEAS_FUTURES',
   'US_STOCK',
   'KOREA_STOCK',
   'COIN_FUTURES',
-  'COIN_OPTIONS',
 ]
 
-/** Coin default: one-way. With hedgeMode ON: dual legs. Other products: always one-way. */
 export type PositionMode = 'hedge' | 'one_way'
 
 /** Coin futures can toggle hedge mode; other product groups cannot. */
@@ -54,6 +50,20 @@ export function positionModeForProduct(
   return useHedgeLegTrading(product, hedgeMode) ? 'hedge' : 'one_way'
 }
 
+/** 국내선물 — 선물 (kr_future). */
+export type KoreaFutureContractSymbol =
+  | 'KOSPI200F'
+  | 'KOSPI200FM'
+  | 'USDF'
+  | 'KTB03F'
+
+/** 국내선물 — 옵션 (option, KOSPI200 계열). */
+export type KoreaDomesticOptionSymbol = 'K200W' | 'K200WM' | 'K200M'
+
+export type KoreaFuturesSymbol =
+  | KoreaFutureContractSymbol
+  | KoreaDomesticOptionSymbol
+
 export type CoinSymbol = 'BTCUSDT' | 'ETHUSDT' | 'SOLUSDT'
 
 export type OverseasFutureSymbol = 'ESZ6'
@@ -62,9 +72,16 @@ export type UsStockSymbol = 'AAPL'
 
 export type KoreaStockSymbol = '005930'
 
-export type KoreaFutureSymbol = 'KOSPI200F'
+export const KOREA_FUTURE_CONTRACT_SYMBOLS: readonly KoreaFutureContractSymbol[] =
+  ['KOSPI200F', 'KOSPI200FM', 'USDF', 'KTB03F']
 
-export type CoinOptionSymbol = 'BTC_97000_C'
+export const KOREA_DOMESTIC_OPTION_SYMBOLS: readonly KoreaDomesticOptionSymbol[] =
+  ['K200W', 'K200WM', 'K200M']
+
+export const KOREA_FUTURES_SYMBOLS: readonly KoreaFuturesSymbol[] = [
+  ...KOREA_FUTURE_CONTRACT_SYMBOLS,
+  ...KOREA_DOMESTIC_OPTION_SYMBOLS,
+]
 
 export const COIN_SYMBOLS: readonly CoinSymbol[] = [
   'BTCUSDT',
@@ -78,10 +95,6 @@ export const US_STOCK_SYMBOLS: readonly UsStockSymbol[] = ['AAPL']
 
 export const KOREA_STOCK_SYMBOLS: readonly KoreaStockSymbol[] = ['005930']
 
-export const KOREA_FUTURES_SYMBOLS: readonly KoreaFutureSymbol[] = ['KOSPI200F']
-
-export const COIN_OPTIONS_SYMBOLS: readonly CoinOptionSymbol[] = ['BTC_97000_C']
-
 export const ENGINE_SYMBOLS_BY_PRODUCT: Record<
   ProductType,
   readonly string[]
@@ -91,7 +104,12 @@ export const ENGINE_SYMBOLS_BY_PRODUCT: Record<
   US_STOCK: US_STOCK_SYMBOLS,
   KOREA_STOCK: KOREA_STOCK_SYMBOLS,
   COIN_FUTURES: COIN_SYMBOLS,
-  COIN_OPTIONS: COIN_OPTIONS_SYMBOLS,
+}
+
+export function isKoreaDomesticOptionSymbol(
+  symbol: string,
+): symbol is KoreaDomesticOptionSymbol {
+  return (KOREA_DOMESTIC_OPTION_SYMBOLS as readonly string[]).includes(symbol)
 }
 
 export type SymbolConfig = {
@@ -121,14 +139,16 @@ export const KOREA_STOCK_SYMBOL_CONFIG: Record<KoreaStockSymbol, SymbolConfig> =
   '005930': { symbol: '005930', basePrice: 58_000, tick: 100 },
 }
 
-export const KOREA_FUTURES_SYMBOL_CONFIG: Record<KoreaFutureSymbol, SymbolConfig> =
+export const KOREA_FUTURES_SYMBOL_CONFIG: Record<KoreaFuturesSymbol, SymbolConfig> =
   {
     KOSPI200F: { symbol: 'KOSPI200F', basePrice: 385.5, tick: 0.05 },
+    KOSPI200FM: { symbol: 'KOSPI200FM', basePrice: 385.5, tick: 0.05 },
+    USDF: { symbol: 'USDF', basePrice: 1_385, tick: 0.1 },
+    KTB03F: { symbol: 'KTB03F', basePrice: 108.25, tick: 0.01 },
+    K200W: { symbol: 'K200W', basePrice: 5.2, tick: 0.05 },
+    K200WM: { symbol: 'K200WM', basePrice: 4.85, tick: 0.05 },
+    K200M: { symbol: 'K200M', basePrice: 6.1, tick: 0.05 },
   }
-
-export const COIN_OPTIONS_SYMBOL_CONFIG: Record<CoinOptionSymbol, SymbolConfig> = {
-  BTC_97000_C: { symbol: 'BTC_97000_C', basePrice: 850, tick: 0.5 },
-}
 
 export const DEFAULT_SHARED_ORDER_QTY = 0.05
 

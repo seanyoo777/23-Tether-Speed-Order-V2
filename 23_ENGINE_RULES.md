@@ -6,16 +6,15 @@
 
 ## 1. 상품
 
-**기본 상품 (확정):** 국내선물 · 해외선물 · 해외주식 · 국내주식 · 코인 · 옵션 — `docs/FIVE_PRODUCT_BASELINE.md`
+**기본 상품 (확정):** 국내선물(선물+옵션) · 해외선물 · 해외주식 · 국내주식 · 코인 — `docs/FIVE_PRODUCT_BASELINE.md`
 
 | # | 한글 | ProductType | mock |
 |---|------|-------------|------|
-| 1 | 국내선물 | `KOREA_FUTURES` | ✅ KOSPI200F (P6) |
+| 1 | 국내선물 | `KOREA_FUTURES` | ✅ 선물 4 + 옵션 3 (P6) |
 | 2 | 해외선물 | `OVERSEAS_FUTURES` | ✅ ESZ6 (P3) |
 | 3 | 해외주식 | `US_STOCK` | ✅ AAPL (P4) |
 | 4 | 국내주식 | `KOREA_STOCK` | ✅ 005930 (P4) |
 | 5 | 코인 | `COIN_FUTURES` | ✅ (P2) |
-| 6 | 옵션 | `COIN_OPTIONS` | ✅ BTC_97000_C (P6) |
 
 **동결:** `STABLE_23_MOCK_V1` · P6 기본 툴 완료 · **24번** = 실연동·대형 신기능
 
@@ -43,21 +42,12 @@
 
 원웨이만 · KRX 호가단위 100 · `shortEnabled` registry false (mock 체결은 one-way flip 규칙) · 호가 STOP 열 = 코인 동일 (§6b)
 
-### 국내선물 KOSPI200F
+### 국내선물 (`KOREA_FUTURES`)
 
-| Symbol | 기본가 | tick | multiplier |
-|--------|--------|------|------------|
-| KOSPI200F | 385.5 | 0.05 | 250000 (adapter PnL) |
+**선물:** KOSPI200F · KOSPI200FM · USDF · KTB03F (`kr_future`)  
+**옵션 (같은 탭):** K200W 위클리 · K200WM 위클리먼데이 · K200M 월물 (`option`)
 
-원웨이만 · 호가 STOP = 코인 동일
-
-### 옵션 BTC_97000_C
-
-| Symbol | 기본가 | tick | multiplier |
-|--------|--------|------|------------|
-| BTC_97000_C | 850 | 0.5 | 1 |
-
-원웨이만 · 코인 옵션 mock · 호가 STOP = 코인 동일
+원웨이만 · 호가 STOP = 코인 동일 · 상세 `docs/FIVE_PRODUCT_BASELINE.md`
 
 ### 코인선물 심볼
 

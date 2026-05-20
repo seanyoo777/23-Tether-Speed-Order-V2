@@ -1,3 +1,4 @@
+import { getBridgeMeta } from '../integration/symbolConfigBridge.ts'
 import {
   PRODUCT_LABELS,
   PRODUCT_TAB_ORDER,
@@ -43,16 +44,20 @@ export function ProductSymbolSelector({
       </div>
       {isProductEngineReady(product) && (
         <div className="symbol-tabs">
-          {symbolsForProduct(product).map((s) => (
-            <button
-              key={s}
-              type="button"
-              className={s === symbol ? 'on neon' : ''}
-              onClick={() => onSymbol(s)}
-            >
-              {s.replace('USDT', '')}
-            </button>
-          ))}
+          {symbolsForProduct(product).map((s) => {
+            const meta = getBridgeMeta(product, s)
+            return (
+              <button
+                key={s}
+                type="button"
+                className={s === symbol ? 'on neon' : ''}
+                title={meta?.displayName ?? s}
+                onClick={() => onSymbol(s)}
+              >
+                {s.replace('USDT', '')}
+              </button>
+            )
+          })}
         </div>
       )}
       {isProductEngineReady(product) && (

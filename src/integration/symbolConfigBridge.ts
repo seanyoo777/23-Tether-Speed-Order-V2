@@ -10,24 +10,31 @@ import { supportsHedgeMode } from '../types/productTypes.ts'
 import {
   COIN_SYMBOL_CONFIG,
   ENGINE_SYMBOLS_BY_PRODUCT,
+  KOREA_FUTURES_SYMBOL_CONFIG,
   OVERSEAS_SYMBOL_CONFIG,
   US_STOCK_SYMBOL_CONFIG,
   KOREA_STOCK_SYMBOL_CONFIG,
-  KOREA_FUTURES_SYMBOL_CONFIG,
-  COIN_OPTIONS_SYMBOL_CONFIG,
   symbolsForProduct,
 } from '../types/productTypes.ts'
 
+const SINGLE_MARKET_PRODUCT: Partial<Record<ProductType, CoreMarketType>> = {
+  OVERSEAS_FUTURES: 'overseas_future',
+  US_STOCK: 'us_stock',
+  KOREA_STOCK: 'kr_stock',
+  COIN_FUTURES: 'coin',
+}
+
+/** 국내선물 = 선물(kr_future) + 국내 옵션(option) 혼합 상품. */
+const KOREA_FUTURES_MARKETS: readonly CoreMarketType[] = ['kr_future', 'option']
+
 export function productTypeToCoreMarket(product: ProductType): CoreMarketType | null {
-  const map: Partial<Record<ProductType, CoreMarketType>> = {
-    KOREA_FUTURES: 'kr_future',
-    OVERSEAS_FUTURES: 'overseas_future',
-    US_STOCK: 'us_stock',
-    KOREA_STOCK: 'kr_stock',
-    COIN_FUTURES: 'coin',
-    COIN_OPTIONS: 'option',
-  }
-  return map[product] ?? null
+  return SINGLE_MARKET_PRODUCT[product] ?? null
+}
+
+export function coreMarketsForProduct(product: ProductType): readonly CoreMarketType[] {
+  if (product === 'KOREA_FUTURES') return KOREA_FUTURES_MARKETS
+  const single = productTypeToCoreMarket(product)
+  return single ? [single] : []
 }
 
 export function isEngineSymbol(product: ProductType, symbol: string): boolean {
@@ -41,10 +48,9 @@ export function isProductBridgeReady(
   symbol: string,
 ): boolean {
   if (!isEngineSymbol(product, symbol)) return false
-  const market = productTypeToCoreMarket(product)
-  if (!market) return false
   const spec = getSymbolSpec(symbol)
-  return spec?.marketType === market
+  if (!spec) return false
+  return coreMarketsForProduct(product).includes(spec.marketType)
 }
 
 export function getCoreSpec(
@@ -71,11 +77,6 @@ function seedConfig(product: ProductType, symbol: string): SymbolConfig | undefi
   if (product === 'KOREA_FUTURES' && symbol in KOREA_FUTURES_SYMBOL_CONFIG) {
     return KOREA_FUTURES_SYMBOL_CONFIG[
       symbol as keyof typeof KOREA_FUTURES_SYMBOL_CONFIG
-    ]
-  }
-  if (product === 'COIN_OPTIONS' && symbol in COIN_OPTIONS_SYMBOL_CONFIG) {
-    return COIN_OPTIONS_SYMBOL_CONFIG[
-      symbol as keyof typeof COIN_OPTIONS_SYMBOL_CONFIG
     ]
   }
   return undefined

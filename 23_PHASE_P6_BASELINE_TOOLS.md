@@ -6,9 +6,9 @@
 
 ## Scope
 
-- `KOREA_FUTURES` · **KOSPI200F** (kr_future)
-- `COIN_OPTIONS` · **BTC_97000_C** (option)
-- UI `PRODUCT_TAB_ORDER` — 6탭 · 거래 규칙 = 기존 원웨이 mock
+- `KOREA_FUTURES` — 선물 4종 + 국내 옵션 3종 (위클리·위클리먼데이·월물)
+- 별도 옵션 탭 없음 · UI **5탭**
+- 거래 규칙 = 기존 원웨이 mock
 
 ## Gate A
 

@@ -12,12 +12,10 @@ export type WatchlistRow = {
 }
 
 const PRODUCT_MARKET: Partial<Record<ProductType, CoreMarketType>> = {
-  KOREA_FUTURES: 'kr_future',
   OVERSEAS_FUTURES: 'overseas_future',
   US_STOCK: 'us_stock',
   KOREA_STOCK: 'kr_stock',
   COIN_FUTURES: 'coin',
-  COIN_OPTIONS: 'option',
 }
 
 const TAG_BY_MARKET: Record<CoreMarketType, string> = {
@@ -30,6 +28,17 @@ const TAG_BY_MARKET: Record<CoreMarketType, string> = {
 }
 
 export function watchlistRowsForProduct(product: ProductType): WatchlistRow[] {
+  if (product === 'KOREA_FUTURES') {
+    return listSymbolSpecs()
+      .filter((s) => s.marketType === 'kr_future' || s.marketType === 'option')
+      .map((s) => ({
+        symbol: s.symbol,
+        displayName: s.displayName,
+        marketType: s.marketType,
+        tag: TAG_BY_MARKET[s.marketType],
+        tradable: isProductEngineReady(product),
+      }))
+  }
   const market = PRODUCT_MARKET[product]
   if (!market) {
     return previewRowsForComingSoon(product)
@@ -49,7 +58,6 @@ export function watchlistRowsForProduct(product: ProductType): WatchlistRow[] {
 function previewRowsForComingSoon(product: ProductType): WatchlistRow[] {
   const previews: Record<ProductType, WatchlistRow[]> = {
     KOREA_FUTURES: [],
-    COIN_OPTIONS: [],
     COIN_FUTURES: [],
     OVERSEAS_FUTURES: [
       stub('ESZ6', 'E-mini S&P', 'overseas_future', 'FUT'),

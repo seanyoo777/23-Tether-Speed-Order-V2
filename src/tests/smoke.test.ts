@@ -43,7 +43,7 @@ describe('smoke / QA lock', () => {
     expect(STABLE_23_COIN_MOCK_V1).toBe('STABLE_23_COIN_MOCK_V1')
   })
 
-  it('six-product switch smoke', () => {
+  it('five-product switch smoke', () => {
     const s = freshSession()
     const chain = [
       ['KOREA_FUTURES', 'KOSPI200F'],
@@ -51,7 +51,6 @@ describe('smoke / QA lock', () => {
       ['US_STOCK', 'AAPL'],
       ['KOREA_STOCK', '005930'],
       ['COIN_FUTURES', 'BTCUSDT'],
-      ['COIN_OPTIONS', 'BTC_97000_C'],
     ] as const
     for (const [product, symbol] of chain) {
       s.setProduct(product)
@@ -107,11 +106,11 @@ describe('smoke / QA lock', () => {
     expect(s.placePanelOrder('buy').ok).toBe(true)
   })
 
-  it('COIN_OPTIONS BTC_97000_C engine-ready', () => {
+  it('KOREA_FUTURES weekly option K200W engine-ready', () => {
     const s = freshSession()
-    s.setProduct('COIN_OPTIONS')
-    expect(s.getState().symbol).toBe('BTC_97000_C')
-    expect(s.getState().hedgeMode).toBe(false)
+    s.setProduct('KOREA_FUTURES')
+    s.setSymbol('K200W')
+    expect(s.placePanelOrder('buy').ok).toBe(true)
   })
 
   it('order flow plan produces slices', async () => {
