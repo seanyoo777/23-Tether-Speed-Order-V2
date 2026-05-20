@@ -30,10 +30,10 @@
 
 | **Lock doc** | `23_STABLE_MOCK_V1_LOCK.md` |
 
-| **Next work** | 동결 유지 (버그만) · 분양 스킨 · 신기능 → **24번** |
-| **Post-freeze** | §6b 호가 STOP 4상품 통일 ✅ · 사용자 QA 이슈 없음 |
-| **5대 기준** | 국내선물·해외선물·해외주식·국내주식·코인 — `docs/FIVE_PRODUCT_BASELINE.md` |
-| **미완** | **국내선물** (`KOREA_FUTURES` / KOSPI200F) — P6 또는 24번 |
+| **Next work** | 동결 유지 (버그만) · 분양 스킨 · **24번** 실연동·신기능 |
+| **P6** | 국내선물 + 옵션 mock — `23_PHASE_P6_BASELINE_TOOLS.md` |
+| **기본 상품** | 6탭 — `docs/FIVE_PRODUCT_BASELINE.md` |
+| **Post-freeze** | §6b 호가 STOP 통일 ✅ |
 | **HQ 보고** | `docs/HQ_REPORTING.md` · `20-TetherTeam-HQ/MASTER_MANUAL.md` §23 |
 
 
