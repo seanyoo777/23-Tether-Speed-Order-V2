@@ -34,6 +34,7 @@ git tag -a STABLE_23_MOCK_V1 -m "23 P5 four-product mock HTS freeze"
 ## Regression suites
 
 - `mockIntegrationP5.test.ts` — 4상품 전환 · theme/popup
+- `bookMitUnifyPostFreeze.test.ts` — §6b 호가 STOP 4상품
 - `coinRulesP2.test.ts` · `coinOneWayPrimary.test.ts`
 - `overseasFuturesP3.test.ts` · `stockMockP4.test.ts`
 - `workspaceOrderAccuracy.test.ts` · `theme2OrderAccuracy.test.ts`

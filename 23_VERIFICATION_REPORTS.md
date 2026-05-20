@@ -137,6 +137,14 @@
 
 ---
 
+## VR-006 — Post-freeze §6b (2026-05-20) — ✅
+
+- 호가 STOP 4상품 = 코인 (`bookMitUnifyPostFreeze.test.ts`)
+- Gate: test **204** · smoke **34**
+- 사용자: 주문·미국/국내 MIT 정상 · 이슈 없음
+
+---
+
 ## VR-005 — P5 통합·동결 (2026-05-20) — ✅
 
 - `mockIntegrationP5.test.ts` (10) — 4상품 전환 · coin MIT after cycle · theme/popup/detach

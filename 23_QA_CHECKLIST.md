@@ -5,7 +5,7 @@
 **Prior stable:** `STABLE_23_COIN_MOCK_V1`  
 **Lock:** `23_STABLE_MOCK_V1_LOCK.md`  
 **HQ 보고:** `docs/HQ_REPORTING.md`  
-**Automated:** `npm run test` (197) · `npm run smoke` (34)
+**Automated:** `npm run test` (204) · `npm run smoke` (34)
 
 ---
 
@@ -15,7 +15,7 @@
 |-------|------|--------|
 | `npm run lint` | — | PASS |
 | `npm run build` | — | PASS |
-| `npm run test` | vitest | PASS (197) |
+| `npm run test` | vitest | PASS (204) |
 | `npm run smoke` | vitest | PASS (34) |
 
 ---
