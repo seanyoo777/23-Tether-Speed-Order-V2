@@ -8,7 +8,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const src = join(root, '../../03-OneAI/exports/research_demo_feed.sample.json')
+const src = join(root, '../03-OneAI/exports/research_demo_feed.sample.json')
 const destDir = join(root, 'public/oneai')
 const dest = join(destDir, 'research_demo_feed.sample.json')
 

@@ -59,7 +59,7 @@ npm run build
 ## Manual QA
 
 1. `npm run dev`
-2. Open `http://localhost:5173/?workspace=research_demo`
+2. Open `http://localhost:5123/?workspace=research_demo` (Vite port in `vite.config.ts`)
 3. Confirm signal rows, market chips, MOCK footer
 4. From Theme2 HTS, click **OneAI Research**
 

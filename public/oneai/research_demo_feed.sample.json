@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-25T13:05:52.658Z",
+  "generatedAt": "2026-05-25T14:36:36.286Z",
   "variantId": "research_demo",
   "source": "oneai-signal-research-storage",
   "markets": [
@@ -27,7 +27,7 @@
           "gamma",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       },
       {
@@ -47,7 +47,7 @@
           "event-vol",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -69,7 +69,7 @@
           "basis",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -91,7 +91,7 @@
           "breakout",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -113,7 +113,7 @@
           "trend",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       },
       {
@@ -133,7 +133,7 @@
           "vol-reversal",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ]
@@ -157,7 +157,7 @@
           "breakout",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       },
       {
@@ -177,7 +177,7 @@
           "event-vol",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -199,7 +199,7 @@
           "basis",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -221,7 +221,7 @@
           "gamma",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -243,7 +243,7 @@
           "trend",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ],
@@ -265,7 +265,7 @@
           "vol-reversal",
           "mock-seed"
         ],
-        "createdAt": "2026-05-25T13:05:52.658Z",
+        "createdAt": "2026-05-25T14:36:36.286Z",
         "mockOnly": true
       }
     ]
@@ -288,7 +288,7 @@
         "gamma",
         "mock-seed"
       ],
-      "createdAt": "2026-05-25T13:05:52.658Z",
+      "createdAt": "2026-05-25T14:36:36.286Z",
       "mockOnly": true
     },
     {
@@ -308,7 +308,7 @@
         "basis",
         "mock-seed"
       ],
-      "createdAt": "2026-05-25T13:05:52.658Z",
+      "createdAt": "2026-05-25T14:36:36.286Z",
       "mockOnly": true
     },
     {
@@ -328,7 +328,7 @@
         "breakout",
         "mock-seed"
       ],
-      "createdAt": "2026-05-25T13:05:52.658Z",
+      "createdAt": "2026-05-25T14:36:36.286Z",
       "mockOnly": true
     },
     {
@@ -348,7 +348,7 @@
         "trend",
         "mock-seed"
       ],
-      "createdAt": "2026-05-25T13:05:52.658Z",
+      "createdAt": "2026-05-25T14:36:36.286Z",
       "mockOnly": true
     },
     {
@@ -368,7 +368,7 @@
         "vol-reversal",
         "mock-seed"
       ],
-      "createdAt": "2026-05-25T13:05:52.658Z",
+      "createdAt": "2026-05-25T14:36:36.286Z",
       "mockOnly": true
     },
     {
@@ -388,7 +388,7 @@
         "event-vol",
         "mock-seed"
       ],
-      "createdAt": "2026-05-25T13:05:52.658Z",
+      "createdAt": "2026-05-25T14:36:36.286Z",
       "mockOnly": true
     }
   ],
