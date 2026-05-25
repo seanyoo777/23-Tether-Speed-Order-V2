@@ -1,0 +1,396 @@
+{
+  "generatedAt": "2026-05-25T13:05:52.658Z",
+  "variantId": "research_demo",
+  "source": "oneai-signal-research-storage",
+  "markets": [
+    "option",
+    "futures",
+    "stock",
+    "crypto"
+  ],
+  "byMarket": {
+    "option": [
+      {
+        "signalId": "sr-signal-seed-0-2026-05-25",
+        "marketType": "option",
+        "strategyType": "gamma-expansion",
+        "direction": "long",
+        "confidenceMock": 72,
+        "reasoningSummary": "Mock: 단기 감마 확대 구간 — 콜 스큐우 완화·OI 증가 패턴(데모). 청산 클러스터는 상방에 집중.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "options",
+          "gamma",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      },
+      {
+        "signalId": "sr-signal-seed-5-2026-05-25",
+        "marketType": "option",
+        "strategyType": "breakout",
+        "direction": "neutral",
+        "confidenceMock": 58,
+        "reasoningSummary": "Mock: 이벤트 전 IV 팽창 — 방향성 중립 스프레드 연구 템플릿.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "options",
+          "event-vol",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "futures": [
+      {
+        "signalId": "sr-signal-seed-1-2026-05-25",
+        "marketType": "futures",
+        "strategyType": "premium-collapse",
+        "direction": "short",
+        "confidenceMock": 68,
+        "reasoningSummary": "Mock: 선물 베이시스 축소 + 펀딩 음전 — 프리미엄 붕괴 시나리오 연구용 스냅샷.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "futures",
+          "basis",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "stock": [
+      {
+        "signalId": "sr-signal-seed-2-2026-05-25",
+        "marketType": "stock",
+        "strategyType": "breakout",
+        "direction": "long",
+        "confidenceMock": 61,
+        "reasoningSummary": "Mock: 박스권 상단 돌파 후 거래량 동반 — 섹터 로테이션 연구 노트(실주문 없음).",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "equity",
+          "breakout",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "crypto": [
+      {
+        "signalId": "sr-signal-seed-3-2026-05-25",
+        "marketType": "crypto",
+        "strategyType": "trend-follow",
+        "direction": "long",
+        "confidenceMock": 74,
+        "reasoningSummary": "Mock: BTC 추세 추종 호기 정렬 — 레짐 bullish 가정 하 mock 추적 신호.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "crypto",
+          "trend",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      },
+      {
+        "signalId": "sr-signal-seed-4-2026-05-25",
+        "marketType": "crypto",
+        "strategyType": "volatility-reversal",
+        "direction": "watch",
+        "confidenceMock": 55,
+        "reasoningSummary": "Mock: 변동성 수축 후 역추세 관찰 구간 — 레버리지 리스크만 메모.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "crypto",
+          "vol-reversal",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ]
+  },
+  "byStrategy": {
+    "breakout": [
+      {
+        "signalId": "sr-signal-seed-2-2026-05-25",
+        "marketType": "stock",
+        "strategyType": "breakout",
+        "direction": "long",
+        "confidenceMock": 61,
+        "reasoningSummary": "Mock: 박스권 상단 돌파 후 거래량 동반 — 섹터 로테이션 연구 노트(실주문 없음).",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "equity",
+          "breakout",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      },
+      {
+        "signalId": "sr-signal-seed-5-2026-05-25",
+        "marketType": "option",
+        "strategyType": "breakout",
+        "direction": "neutral",
+        "confidenceMock": 58,
+        "reasoningSummary": "Mock: 이벤트 전 IV 팽창 — 방향성 중립 스프레드 연구 템플릿.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "options",
+          "event-vol",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "premium-collapse": [
+      {
+        "signalId": "sr-signal-seed-1-2026-05-25",
+        "marketType": "futures",
+        "strategyType": "premium-collapse",
+        "direction": "short",
+        "confidenceMock": 68,
+        "reasoningSummary": "Mock: 선물 베이시스 축소 + 펀딩 음전 — 프리미엄 붕괴 시나리오 연구용 스냅샷.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "futures",
+          "basis",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "gamma-expansion": [
+      {
+        "signalId": "sr-signal-seed-0-2026-05-25",
+        "marketType": "option",
+        "strategyType": "gamma-expansion",
+        "direction": "long",
+        "confidenceMock": 72,
+        "reasoningSummary": "Mock: 단기 감마 확대 구간 — 콜 스큐우 완화·OI 증가 패턴(데모). 청산 클러스터는 상방에 집중.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "options",
+          "gamma",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "trend-follow": [
+      {
+        "signalId": "sr-signal-seed-3-2026-05-25",
+        "marketType": "crypto",
+        "strategyType": "trend-follow",
+        "direction": "long",
+        "confidenceMock": 74,
+        "reasoningSummary": "Mock: BTC 추세 추종 호기 정렬 — 레짐 bullish 가정 하 mock 추적 신호.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "crypto",
+          "trend",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ],
+    "volatility-reversal": [
+      {
+        "signalId": "sr-signal-seed-4-2026-05-25",
+        "marketType": "crypto",
+        "strategyType": "volatility-reversal",
+        "direction": "watch",
+        "confidenceMock": 55,
+        "reasoningSummary": "Mock: 변동성 수축 후 역추세 관찰 구간 — 레버리지 리스크만 메모.",
+        "marketRegimeRef": {
+          "regime": "sideways",
+          "regimeLabel": "횡보장",
+          "mockOnly": true
+        },
+        "tags": [
+          "crypto",
+          "vol-reversal",
+          "mock-seed"
+        ],
+        "createdAt": "2026-05-25T13:05:52.658Z",
+        "mockOnly": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "signalId": "sr-signal-seed-0-2026-05-25",
+      "marketType": "option",
+      "strategyType": "gamma-expansion",
+      "direction": "long",
+      "confidenceMock": 72,
+      "reasoningSummary": "Mock: 단기 감마 확대 구간 — 콜 스큐우 완화·OI 증가 패턴(데모). 청산 클러스터는 상방에 집중.",
+      "marketRegimeRef": {
+        "regime": "sideways",
+        "regimeLabel": "횡보장",
+        "mockOnly": true
+      },
+      "tags": [
+        "options",
+        "gamma",
+        "mock-seed"
+      ],
+      "createdAt": "2026-05-25T13:05:52.658Z",
+      "mockOnly": true
+    },
+    {
+      "signalId": "sr-signal-seed-1-2026-05-25",
+      "marketType": "futures",
+      "strategyType": "premium-collapse",
+      "direction": "short",
+      "confidenceMock": 68,
+      "reasoningSummary": "Mock: 선물 베이시스 축소 + 펀딩 음전 — 프리미엄 붕괴 시나리오 연구용 스냅샷.",
+      "marketRegimeRef": {
+        "regime": "sideways",
+        "regimeLabel": "횡보장",
+        "mockOnly": true
+      },
+      "tags": [
+        "futures",
+        "basis",
+        "mock-seed"
+      ],
+      "createdAt": "2026-05-25T13:05:52.658Z",
+      "mockOnly": true
+    },
+    {
+      "signalId": "sr-signal-seed-2-2026-05-25",
+      "marketType": "stock",
+      "strategyType": "breakout",
+      "direction": "long",
+      "confidenceMock": 61,
+      "reasoningSummary": "Mock: 박스권 상단 돌파 후 거래량 동반 — 섹터 로테이션 연구 노트(실주문 없음).",
+      "marketRegimeRef": {
+        "regime": "sideways",
+        "regimeLabel": "횡보장",
+        "mockOnly": true
+      },
+      "tags": [
+        "equity",
+        "breakout",
+        "mock-seed"
+      ],
+      "createdAt": "2026-05-25T13:05:52.658Z",
+      "mockOnly": true
+    },
+    {
+      "signalId": "sr-signal-seed-3-2026-05-25",
+      "marketType": "crypto",
+      "strategyType": "trend-follow",
+      "direction": "long",
+      "confidenceMock": 74,
+      "reasoningSummary": "Mock: BTC 추세 추종 호기 정렬 — 레짐 bullish 가정 하 mock 추적 신호.",
+      "marketRegimeRef": {
+        "regime": "sideways",
+        "regimeLabel": "횡보장",
+        "mockOnly": true
+      },
+      "tags": [
+        "crypto",
+        "trend",
+        "mock-seed"
+      ],
+      "createdAt": "2026-05-25T13:05:52.658Z",
+      "mockOnly": true
+    },
+    {
+      "signalId": "sr-signal-seed-4-2026-05-25",
+      "marketType": "crypto",
+      "strategyType": "volatility-reversal",
+      "direction": "watch",
+      "confidenceMock": 55,
+      "reasoningSummary": "Mock: 변동성 수축 후 역추세 관찰 구간 — 레버리지 리스크만 메모.",
+      "marketRegimeRef": {
+        "regime": "sideways",
+        "regimeLabel": "횡보장",
+        "mockOnly": true
+      },
+      "tags": [
+        "crypto",
+        "vol-reversal",
+        "mock-seed"
+      ],
+      "createdAt": "2026-05-25T13:05:52.658Z",
+      "mockOnly": true
+    },
+    {
+      "signalId": "sr-signal-seed-5-2026-05-25",
+      "marketType": "option",
+      "strategyType": "breakout",
+      "direction": "neutral",
+      "confidenceMock": 58,
+      "reasoningSummary": "Mock: 이벤트 전 IV 팽창 — 방향성 중립 스프레드 연구 템플릿.",
+      "marketRegimeRef": {
+        "regime": "sideways",
+        "regimeLabel": "횡보장",
+        "mockOnly": true
+      },
+      "tags": [
+        "options",
+        "event-vol",
+        "mock-seed"
+      ],
+      "createdAt": "2026-05-25T13:05:52.658Z",
+      "mockOnly": true
+    }
+  ],
+  "mockOnly": true
+}

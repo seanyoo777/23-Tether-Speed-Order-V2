@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint src",
     "test": "vitest run",
+    "sync:oneai-feed": "node scripts/sync-oneai-feed-sample.mjs",
     "smoke": "npm run build && vitest run src/tests/smoke.test.ts"
   },
   "dependencies": {

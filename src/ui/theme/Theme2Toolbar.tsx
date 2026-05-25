@@ -1,4 +1,5 @@
 import { useWorkspace } from '../../app/WorkspaceContext.tsx'
+import { buildOneAiResearchDemoUrl } from '../../integration/oneaiResearchDemoRoute.ts'
 import { THEME2_LAYOUT_LABELS } from '../../theme/theme2Presets.ts'
 import type { LayoutPresetId } from '../../workspace/types.ts'
 
@@ -30,6 +31,9 @@ export function Theme2Toolbar() {
       <button type="button" onClick={() => openPopup('ladder')}>
         호가 팝업
       </button>
+      <a href={buildOneAiResearchDemoUrl()} className="oneai-research-toolbar-link muted">
+        OneAI Research
+      </a>
       <span className="muted">플로팅 전용 · MOCK</span>
     </div>
   )
